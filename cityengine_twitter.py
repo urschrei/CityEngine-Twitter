@@ -42,7 +42,7 @@ def bng(input_lat, input_lon):
     hannahfry.co.uk/2012/02/01/converting-british-national-grid-to-latitude-and-longitude-ii/
 
     """
-    # simple bounds checking
+    # Simple bounds checking
     if not all([0 <= input_lat <= 90, -180 <= input_lon <= 180]):
         raise Exception(
             "input_lat should be between 0 and 90, input_lon should be between -180 and 80")
@@ -138,15 +138,15 @@ def bng(input_lat, input_lon):
 
 
 Shapes = ce.getObjectsFrom(ce.scene, ce.withName(name))
-# zone cluster size
+# Zone cluster size
 maxdistance = ce.getAttribute(Shapes[0], 'maxdistance')
-# maximum allowed height
+# Maximum allowed height
 maxHGT = ce.getAttribute(Shapes[0], 'maxHGT')
-# tweet step
+# Tweet step
 twitHGT = ce.getAttribute(Shapes[0], 'twitHGT')
 
 for i in range(len(Shapes)):
-    # gets the position of all objects in scene called Lot1
+    # Gets the position of all objects in scene called Lot1
     lotpos = ce.getPosition(Shapes[i])
     lotposX = lotpos[0]
     lotposY = lotpos[2]
@@ -171,21 +171,21 @@ class StreamWatcherListener(tweepy.StreamListener):
 
         if status.coordinates:
             point = status.coordinates['coordinates']
+            # Reverse lon, lat points
             point[0], point[1] = point[1], point[0]
             global countalltweets
             countalltweets += 1
-            # merging layers
             E, N = bng(point[0], point[1])
             N = -N
             for i in range(len(Shapes)):
-                    # finds distance between the original object and every object in the scene
+                    # Finds distance between the original object and every object in the scene
                     distance = math.sqrt(
                         (E - lotposXa[i]) *
                         (E - lotposXa[i]) +
                         (N - lotposYa[i]) *
                         (N - lotposYa[i]))
                     if distance < maxdistance:
-                        # even odd rule to check whether a point falls within a polygon
+                        # Even odd rule to check whether a point falls within a polygon
                         c = False
                         shapeslist = ce.getVertices(Shapes[i])
                         filtered_shapes = [coord for coord in shapeslist if coord]
@@ -219,7 +219,7 @@ def on_error(self, status_code):
         if status_code == 420:
             print 'Exiting due to auth error - we have to respect a 420 error'
             raise
-        # keep stream alive
+        # Keep stream alive
         return True
 
 
@@ -253,6 +253,7 @@ def main():
         swl,
         timeout=None,
         secure=True)
+    # This is the London bounding box
     stream.filter(locations=[-0.5630, 51.2613, 0.2804, 51.6860])
     print 'Now monitoring filtered stream - %s' % datetime.datetime.now()
 
@@ -261,15 +262,15 @@ if __name__ == "__main__":
     try:
         main()
     except (KeyboardInterrupt, SystemExit):
-        # actually raise these so it exits cleanly
+        # Actually raise these so it exits cleanly
         raise
     except Exception, error:
-        # all other exceptions, so display the error
+        # All other exceptions, so display the error
         print "Stack trace:\n", traceback.print_exc(file=sys.stdout)
     else:
         pass
     finally:
-        # exit cleanly once we've done everything else
+        # Exit cleanly once we've done everything else
         print 'Total no. of Tweets:', countalltweets
         print 'End streaming at - %s' % datetime.datetime.now()
         sys.exit()
