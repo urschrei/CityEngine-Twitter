@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
-Created on 19 May 2013
+"""
+Created on 2013-06-04
 
-@author: Flora Roumpani
-@author: Stephan Hügel
-'''
+@author: Flora Roumpani (flora.roumpani.11@ucl.ac.uk)
+@author: Stephan Hügel (stephan.hugel.12@ucl.ac.uk)
+"""
 import sys
 import datetime
 import traceback
@@ -16,7 +16,7 @@ from scripting import *
 # get a CityEngine instance
 ce = CE()
 
-'''fill name of shapes to analyse'''
+""" fill name of shapes to analyse """
 name = 'buildings_tq_small'
 countalltweets = 0
 lotposXa = []
@@ -172,7 +172,7 @@ class StreamWatcherListener(tweepy.StreamListener):
             point[0], point[1] = point[1], point[0]
             global countalltweets
             countalltweets += 1
-            '''merging layers'''
+            # merging layers
             E, N = bng(point[0], point[1])
             N = -N
             for i in range(len(Shapes)):
@@ -183,7 +183,7 @@ class StreamWatcherListener(tweepy.StreamListener):
                         (N - lotposYa[i]) *
                         (N - lotposYa[i]))
                     if distance < maxdistance:
-                        '''even odd rule check point falls in polygon'''
+                        # even odd rule to check whether a point falls within a polygon
                         c = False
                         shapeslist = ce.getVertices(Shapes[i])
                         filtered_shapes = [coord for coord in shapeslist if coord]
