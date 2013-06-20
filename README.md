@@ -2,7 +2,7 @@
 
 ![London](london.png "London")
 
-Esri's CityEngine is a 3D GIS tool which allows city models to be generated procedurally (that is, models are generated using a set of rules). This approach allows us to define simple conditions which govern the appearance of a city model.
+Esri's [CityEngine](http://www.esri.com/software/cityengine) is a 3D GIS tool which allows city models to be generated procedurally (that is, models are generated using a set of rules). This approach allows us to define simple conditions which govern the appearance of a city model.
 
 Twitter provides a 'firehose' of real-time tweets, including their location if this functionality has been enabled by a user.
 
