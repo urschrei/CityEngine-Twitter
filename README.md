@@ -31,24 +31,24 @@ Because we're mapping tweet frequency to building height, we have had to come up
 This equation scales the shape's height (`h`) by an amount which decreases linearly as it tends towards the maximum height.
 This is an example generator, which returns these values:
 
-    def height():
-    """
-    Yield linearly-decreasing values, beginning with 100
+``` python
+def height():
+"""
+Yield linearly-decreasing values, beginning with 100
 
-    """
-    maxheight = 18000.00
-    previous = 0.00
-    while True:
-        newheight = previous + (((maxheight - previous) / maxheight) * 100.00)
-        previous = newheight
-        yield newheight
+"""
+maxheight = 18000.00
+previous = 0.00
+while True:
+    newheight = previous + (((maxheight - previous) / maxheight) * 100.00)
+    previous = newheight
+    yield newheight
 
 scaled_height = height()
 for h in xrange(5):
     print(scaled_height.next())
     #     100.00, 199.44, 298.33, 396.67, 494.47
-
-
+```
 
 ## Problems and Caveats
 
