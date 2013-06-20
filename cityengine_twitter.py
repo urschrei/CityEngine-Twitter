@@ -4,6 +4,8 @@ Created on 2013-06-04
 
 @author: Flora Roumpani (flora.roumpani.11@ucl.ac.uk)
 @author: Stephan Hügel (stephan.hugel.12@ucl.ac.uk)
+http://www.bartlett.ucl.ac.uk/casa
+
 """
 import sys
 import datetime
