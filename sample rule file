@@ -1,0 +1,71 @@
+/**
+ * File:    ruleheights.cga
+ * Created: 20 Nov 2012 19:42:55 GMT
+ * Author:  lora
+ */
+
+version "2011.1"
+
+attr HGT = 0
+attr opacitytwit=1
+attr opacityshape=0.6
+
+
+
+##to use for a colorramp
+#attr maxHGT= 1000
+#attr min = 0
+#@Range(0,1)
+#attr colorValue = 1
+#attr x_norm =1 / (maxHGT - min) * (maxHGT - min)
+  
+	
+Lot -->
+	
+	
+	##use colorRamp
+	#extrude (HGT)
+	#color (colorRamp("brownToBlue",x_norm))
+	#set (material.opacity, opacity)
+	#Volume.
+
+	
+	case  HGT < 5 :
+	extrude (30)color ("#CACACA")
+	set (material.opacity, opacityshape)
+	Volume.
+	
+	case  HGT < 100 :
+	extrude (HGT)color ("#A3E0FF")#twitterpalete
+	set (material.opacity, opacitytwit)
+	Volume.
+	
+	case  HGT < 200 :
+	extrude (HGT)color ("#66CCFF")#twitterpalete
+	set (material.opacity, opacitytwit)
+	Volume.
+	
+	case  HGT < 400 :
+	extrude (HGT)color ("#52A3CC")#twitterpalete
+	set (material.opacity, opacitytwit)
+	Volume.
+	
+	case  HGT < 600 :
+	extrude (HGT)color ("#478FB2")#twitterpalete
+	set (material.opacity, opacitytwit)
+	Volume.
+	
+	case  HGT < 800 :
+	extrude (HGT)color ("#3D7A99")#twitterpalete
+	set (material.opacity, opacitytwit)
+	Volume.
+	
+	case  HGT > 1000 :
+	extrude (HGT)color ("#295266")#twitterpalete
+	set (material.opacity, opacitytwit)
+	Volume.
+	
+	else:
+	set (material.opacity, opacityshape)
+	Volume.
+	
