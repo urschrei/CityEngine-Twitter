@@ -29,7 +29,7 @@ Following the conversion we determine whether the tweet falls within the boundar
 Because we're mapping tweet frequency to building height, we have had to come up with a way of slowing the growth of building heights, in order to avoid growing locations which generate a lot of tweets (e.g. the British Museum) too tall:  
 ![equation](http://latex.codecogs.com/png.latex?%5Cfn_phv%20h%20%3D%20h_p%20&plus;%20%5Cleft%20%28%5Cfrac%7Bh_%7Bmax%7D%20-%20h_p%7D%7Bh_%7Bmax%7D%7D%20%5Cright%29%20*%20100)  
 This equation scales the shape's height (`h`) by an amount which decreases linearly as it tends towards the maximum height.
-This is an example generator, which returns these values:
+This is an example generator which yields these values:
 
 ``` python
 def height():
