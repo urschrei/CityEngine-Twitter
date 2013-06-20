@@ -32,7 +32,7 @@ Because we're mapping tweet frequency to building height, we have had to come up
 
 ## Problems and Caveats
 
-- As [Ed Manley](http://urbanmovements.co.uk) and [James Cheshire](http://spatial.ly) have pointed out, different Twitter clients report their location with differing levels of spatial precision, and some clients introduce a rounding error in their reported GPS coo-ordinates, which leads to 'striping' when they are visualised. In addition, it is not possible to determine whether a tweet was sent from a moving vehicle or train, or simply as someone was walking close to a building. Additional uncertainty is introduced by the conversion from WGS to BNG, which is only accurate to ~5m.
+- As [Ed Manley](http://urbanmovements.co.uk) and [James Cheshire](http://spatial.ly) have pointed out, different Twitter clients report their location with differing levels of spatial precision, and some clients introduce a rounding error in their reported GPS co-ordinates, which leads to 'striping' when they are visualised. In addition, it is not possible to determine whether a tweet was sent from a moving vehicle or train, or simply as someone was walking close to a building. Additional uncertainty is introduced by the conversion from WGS to BNG, which is only accurate to ~5m.
 - The Twitter Streaming API only delivers filtered (in our case, by location) messages up to the "streaming cap", and there is no way of determining whether the sample that we receive is "representative". This is a limitation inherent to the API.
 
 [![CASA](casa_black.png)](http://www.bartlett.ucl.ac.uk/casa)
