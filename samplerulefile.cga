@@ -2,6 +2,9 @@
  * File:    ruleheights.cga
  * Created: 20 Nov 2012 19:42:55 GMT
  * Author:  lora
+ 
+ This is a sample cga rule file used to simply extrude the volumes and control colors. In this case we are using the twitter pallete. The user can modify this rule to create diffrent building shapes instead of simple extrutions. 
+ 
  */
 
 version "2011.1"
