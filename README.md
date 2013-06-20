@@ -33,16 +33,16 @@ This is an example generator which yields these values:
 
 ``` python
 def height():
-"""
-Yield linearly-decreasing values, beginning with 100
+    """
+    Yield linearly-decreasing values, beginning with 100
 
-"""
-maxheight = 18000.00
-previous = 0.00
-while True:
-    newheight = previous + (((maxheight - previous) / maxheight) * 100.00)
-    previous = newheight
-    yield newheight
+    """
+    maxheight = 18000.00
+    previous = 0.00
+    while True:
+        newheight = previous + (((maxheight - previous) / maxheight) * 100.00)
+        previous = newheight
+        yield newheight
 
 scaled_height = height()
 for h in xrange(5):
