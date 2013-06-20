@@ -11,11 +11,12 @@ Using CityEngine's Python scripting functionality, we have have created a model 
 [link to YouTube video]
 
 ## Details
+### Installation ###
 This script requires the [Tweepy](http://tweepy.github.io) library. You should first install the [pip](http://www.pip-installer.org/en/latest/) tool for your Python installation. Because CityEngine uses its own Jython installation, it's easiest to install Tweepy into a specific target directory external to that installation:  
 `mkdir /path/to/directory`  
 `pip install -t /path/to/directory tweepy`  
 This directory should be added to your Python path using `sys.path.append("C:/path/to/directory")` **before** you import tweepy in your script.
-
+### Method ###
 Using Tweepy, we have defined a bounding box around Greater London. When a tweet is sent to our script by the Twitter streaming API, we determine whether it contains GPS data, and discard it if not.
 
 The basemap we're using is a map of London building footprints, which is supplied by Ordnance Survey, and which can be obtained from [Digimap](http://digimap.edina.ac.uk/digimap/home). In order to place a tweet on our map, we must first convert its coordinates from [WGS](http://en.wikipedia.org/wiki/WGS84) latitude and longitude points to [Ordnance Survey National Grid coordinates](http://en.wikipedia.org/wiki/British_National_Grid).
