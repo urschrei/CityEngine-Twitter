@@ -12,8 +12,8 @@ Using CityEngine's Python scripting functionality, we have have created a model 
 
 ## Details
 This script requires the [Tweepy](http://tweepy.github.io) library. You should first install the [pip](http://www.pip-installer.org/en/latest/) tool for your Python installation. Because CityEngine uses its own Jython installation, it's easiest to install Tweepy into a specific target directory external to that installation:
-`mkdir /path/to/directory`
-`pip install -t /path/to/directory tweepy`
+`mkdir /path/to/directory`  
+`pip install -t /path/to/directory tweepy`  
 This directory should be added to your Python path using `sys.path.append("C:/path/to/directory")` **before** you import tweepy in your script.
 
 Using Tweepy, we have defined a bounding box around Greater London. When a tweet is sent to our script by the Twitter streaming API, we determine whether it contains GPS data, and discard it if not.
