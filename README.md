@@ -27,7 +27,7 @@ Following the conversion we determine whether the tweet falls within the boundar
 2. For each shape obtained in step 1, we create a list of the `x` and `y` coordinates of its vertices, and apply the [even-odd](http://en.wikipedia.org/wiki/Even–odd_rule) rule to determine whether the point falls within the surface defined by the vertices. If it does, we extrude the shape by a given factor, set its colour, and define certain characteristics. In our case, we are mapping one particular attribute – location – to the shape in the form of height. However, any attribute of the tweet could be used to alter a shape's attributes. For instance, we could set the heights of the buildings to their true heights, but add a window to the buildings each time a tweet is received.
 
 Because we're mapping tweet frequency to building height, we have had to come up with a way of slowing the growth of building heights, in order to avoid growing locations which generate a lot of tweets (e.g. the British Museum) too tall:  
-![equation](http://latex.codecogs.com/png.latex?\fn_phv&space;h&space;=&space;h_p&space;&plus;&space;\left&space;(\frac{h_{max}&space;-&space;h_p}{h_{max}}&space;\right)&space;*&space;100)
+![equation](http://latex.codecogs.com/png.latex?%5Cfn_phv%20h%20%3D%20h_p%20&plus;%20%5Cleft%20%28%5Cfrac%7Bh_%7Bmax%7D%20-%20h_p%7D%7Bh_%7Bmax%7D%7D%20%5Cright%29%20*%20100)
 
 
 
