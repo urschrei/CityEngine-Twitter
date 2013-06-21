@@ -24,12 +24,12 @@ You may use any spatial basemap you like. In this script, the co-ordinates cover
 In order to run the demo:
 
 1. Import shapefile `tileslondon.shp`, `cityengine_twitter.py` and `samplerulefile.cga` in CityEngine
-2. Assign the rule file `samplerulefile.cga` in `tileslondon`, in case it is not assigned already. 
-3. Run Python script.
+2. Assign the rule file `samplerulefile.cga` in `tileslondon`, in case it is not assigned already
+3. Run Python script
 
 If you wish to use your own basemap, the steps are as follows:  
 
-1.  Import the shapefile (or any format supported by CityEngine, such as `dxf` &c.), `cityengine_twitter.py` and `samplerulefile.cga` into CityEngine (The script is created for the area of London, so make sure the coordinate system is “British National Grid”). If you are visualising a city outside the UK, this is not necessary, but you will also have to modify the Python script to skip the conversion step to BNG in the [on_status](cityengine_twitter.py#L178) method.
+1.  Import the shapefile (or any format supported by CityEngine, such as `dxf` &c.), `cityengine_twitter.py` and `samplerulefile.cga` into CityEngine (The script is created for the area of London, so make sure the coordinate system is “British National Grid”). If you are visualising a city outside the UK, this is not necessary, but you will also have to modify the Python script to skip the conversion step to BNG in the [on_status](cityengine_twitter.py#L178) method
 2.  Assign the rule file `samplerulefile.cga` to the CityEngine layer in which you wish to collect the tweets. In the rule options of the inspector use `Lot` as Start Rule. You must be able to see three attributes under `samplerulefile`:
     1. `HGT` (controls the height of shapes (object defined))
     2. `Opacityshape` (controls the opacity of the shapes without tweets (user controlled)),
@@ -67,8 +67,8 @@ The basemap we're using is a map of London building footprints, which is supplie
 
 Following the conversion we determine whether the tweet falls within the boundary of a building on our basemap. This calculation is performed in two steps:
 
-1. We create a list of the coordinates of the centroid of each object (in this case, shape) on our map. We then calculate which shapes fall within a user-defined radius (in this case, 100 metres).
-2. For each shape obtained in step 1, we create a list of the `x` and `y` coordinates of its vertices, and apply the [even-odd](http://en.wikipedia.org/wiki/Even–odd_rule) rule to determine whether the point falls within the surface defined by the vertices. If it does, we extrude the shape by a given factor, set its colour, and define certain characteristics. In our case, we are mapping one particular attribute – location – to the shape in the form of height. However, any attribute of the tweet could be used to alter a shape's attributes. For instance, we could set the heights of the buildings to their true heights, but add a window to the buildings each time a tweet is received.
+1. We create a list of the coordinates of the centroid of each object (in this case, shape) on our map. We then calculate which shapes fall within a user-defined radius (in this case, 100 metres)
+2. For each shape obtained in step 1, we create a list of the `x` and `y` coordinates of its vertices, and apply the [even-odd](http://en.wikipedia.org/wiki/Even–odd_rule) rule to determine whether the point falls within the surface defined by the vertices. If it does, we extrude the shape by a given factor, set its colour, and define certain characteristics. In our case, we are mapping one particular attribute – location – to the shape in the form of height. However, any attribute of the tweet could be used to alter a shape's attributes. For instance, we could set the heights of the buildings to their true heights, but add a window to the buildings each time a tweet is received
 
 Because we're mapping tweet frequency to building height, we have had to come up with a way of slowing the growth of building heights, in order to avoid growing locations which generate a lot of tweets (e.g. the British Museum) too tall:  
 ![equation](http://latex.codecogs.com/png.latex?%5Cfn_phv%20h%20%3D%20h_%7Bprev%7D%20&plus;%20%5Cleft%20%28%5Cfrac%7Bh_%7Bmax%7D%20-%20h_%7Bprev%7D%7D%7Bh_%7Bmax%7D%7D%20%5Cright%29%20*%20100)  
@@ -96,8 +96,8 @@ for h in xrange(5):
 
 ## Problems and Caveats
 
-- As [Ed Manley](http://urbanmovements.co.uk) and [James Cheshire](http://spatial.ly) have pointed out, different Twitter clients report their location with differing levels of spatial precision, and some clients introduce a rounding error in their reported GPS co-ordinates, which leads to 'striping' when they are visualised. In addition, it is not possible to determine whether a tweet was sent from a moving vehicle or train, or simply as someone was walking close to a building. Additional uncertainty is introduced by the conversion from WGS to BNG, which is only accurate to ~5m.
-- The Twitter Streaming API only delivers filtered (in our case, by location) messages up to the "streaming cap", and there is no way of determining whether the sample that we receive is "representative". This is a limitation inherent to the API.  
-- Current estimates suggest that only [~1% of Tweets](http://www.quora.com/What-percentage-of-tweets-are-geotagged-What-percentage-of-geotagged-tweets-are-ascribed-to-a-venue#) are Geotagged. Visualising these data thus cannot represent 'actual' Twitter usage in a given place.
+- As [Ed Manley](http://urbanmovements.co.uk) and [James Cheshire](http://spatial.ly) have pointed out, different Twitter clients report their location with differing levels of spatial precision, and some clients introduce a rounding error in their reported GPS co-ordinates, which leads to 'striping' when they are visualised. In addition, it is not possible to determine whether a tweet was sent from a moving vehicle or train, or simply as someone was walking close to a building. Additional uncertainty is introduced by the conversion from WGS to BNG, which is only accurate to ~5m
+- The Twitter Streaming API only delivers filtered (in our case, by location) messages up to the "streaming cap", and there is no way of determining whether the sample that we receive is "representative"
+- Current estimates suggest that only [~1% of Tweets](http://www.quora.com/What-percentage-of-tweets-are-geotagged-What-percentage-of-geotagged-tweets-are-ascribed-to-a-venue#) are Geotagged. Visualising these data thus cannot represent 'actual' Twitter usage in a given place
 
 [![CASA](casa_black.png)](http://www.bartlett.ucl.ac.uk/casa)
