@@ -16,6 +16,49 @@ This script requires the [Tweepy](http://tweepy.github.io) library. You should f
 `mkdir /path/to/directory`  
 `pip install -t /path/to/directory tweepy`  
 This directory should be added to your Python path using `sys.path.append("C:/path/to/directory")` **before** you import tweepy in your script.
+
+### The CityEngine Ruleset ###
+
+The user can use any spatial basemap of their preference. In this script, the coordinates are covering the area of wider London, however, they can be altered by the user in the script.
+
+In order to run the demo: 
+1.  Import shapefile (`tileslondon.shp`- sample given), `cityengine_twitter.py` and `samplerulefile.cga` in CityEngine
+2.  Assign rule file in London_tiles, in case it is not assigned already. 
+3.  Run Python script.
+
+If you wish to use your own basemap, the steps are as follows:  
+
+1.  Import shapefile (or any format supported by CityEngine such as .dxf etc.), `cityengine_twitter.py` and `samplerulefile.cga` into CityEngine (The script is created for the area of London, so make sure the coordinate system is “British National Grid”). If you are visualising a city outside the UK, this is not necessary, but you will also have to modify the Python script to skip the conversion step to BNG in the [on_status](cityengine_twitter.py#L178) method.
+2.  Assign rule file to the CityEngine layer in which you wish to collect the tweets. In the rule options of the inspector use “Lot” as Start Rule. You must be able to see three attributes under samplerulefile:
+    1. HGT (controls the height of shapes (object defined))
+    2. Opacityshape (controls the opacity of the shapes without tweets (user controlled)),
+    3. Opacitytwit (controls the opacity of the shapes with tweets (user controlled)).
+3. Under the field Object Attributes in the inspector, right click and add Object Attribute.
+You will have to repeat this process 5 times as explained below to add 5 different attributes which will allow you to control the catchment areas for the tweets and the height visualization (the names must be identical): 
+    1. Add Object Attribute
+        - Attribute name: `HGT` 
+        - Type: float 
+        - Value: 0 - (adds height to shape) - script controlled
+    2. Add Object Attribute
+        - Attribute name: `count_t` 
+        - Type: float
+        - Value: 0 – (this counts the no. of total tweets on each shape) – script controlled
+    3. Add Object Attribute
+        - Attribute name: `maxHGT`
+        - Type: float
+        - Value: user defined – (maximum height of the generated shapes)
+    4. Add Object Attribute
+        - Attribute name: `twitHGT`
+        - Type: float
+        - Value: user defined – (original step growth per tweet)
+    5. Add Object Attribute
+        - Attribute name: `maxdistance`
+        - Type: float
+        - Value: user defined – (defines the maximum catchment area for the tweet (e.g. The maximum radius that one of our shapes may cover)
+4. Back on the Rule Attributes, go to `HGT`, select source for attribute `HGT`, and set it to the Object attribute with the name `HGT`. 
+5.  Run Python script
+6.  Reset values
+
 ### Method ###
 Using Tweepy, we have defined a bounding box around Greater London. When a tweet is sent to our script by the Twitter streaming API, we determine whether it contains GPS data, and discard it if not.
 
