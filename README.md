@@ -6,7 +6,7 @@ Esri's [CityEngine](http://www.esri.com/software/cityengine) is a 3D GIS tool wh
 
 Twitter provides a 'firehose' of real-time tweets, including their location if this functionality has been enabled by a user.
 
-Using CityEngine's Python scripting functionality, we have have created a model of London in which buildings grow upwards, according to the frequency of tweets which are sent from (or in close proximity to) them.
+Using CityEngine's Python scripting functionality, we've created a model of London in which buildings grow upwards, according to the frequency of tweets which are sent from (or in close proximity to) them.
 
 [link to YouTube video]
 
@@ -15,7 +15,7 @@ Using CityEngine's Python scripting functionality, we have have created a model 
 This script requires the [Tweepy](http://tweepy.github.io) library. You should first install the [pip](http://www.pip-installer.org/en/latest/) tool for your Python installation. Because CityEngine uses its own Jython installation, it's easiest to install Tweepy into a specific target directory external to that installation:  
 `mkdir /path/to/directory`  
 `pip install -t /path/to/directory tweepy`  
-This directory should be added to your Python path using `sys.path.append("C:/path/to/directory")` **before** you import tweepy in your script.
+This directory should be added to your Python path using `sys.path.append("C:/path/to/directory")` **before** you import tweepy in your script. See our example [here](cityengine_twitter.py#L14-15).
 
 ### The CityEngine Ruleset ###
 
