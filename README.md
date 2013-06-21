@@ -28,8 +28,8 @@ Following the conversion we determine whether the tweet falls within the boundar
 
 Because we're mapping tweet frequency to building height, we have had to come up with a way of slowing the growth of building heights, in order to avoid growing locations which generate a lot of tweets (e.g. the British Museum) too tall:  
 ![equation](http://latex.codecogs.com/png.latex?%5Cfn_phv%20h%20%3D%20h_%7Bprev%7D%20&plus;%20%5Cleft%20%28%5Cfrac%7Bh_%7Bmax%7D%20-%20h_%7Bprev%7D%7D%7Bh_%7Bmax%7D%7D%20%5Cright%29%20*%20100)  
-This equation scales the shape's height (`h`) by an amount which decreases linearly as it tends towards the maximum height.
-This is an example generator which yields these values:
+This equation scales the shape's height,`h`, by an amount which decreases linearly as it grows towards the maximum height.
+An example generator which yields these values:
 
 ``` python
 def height():
@@ -53,6 +53,7 @@ for h in xrange(5):
 ## Problems and Caveats
 
 - As [Ed Manley](http://urbanmovements.co.uk) and [James Cheshire](http://spatial.ly) have pointed out, different Twitter clients report their location with differing levels of spatial precision, and some clients introduce a rounding error in their reported GPS co-ordinates, which leads to 'striping' when they are visualised. In addition, it is not possible to determine whether a tweet was sent from a moving vehicle or train, or simply as someone was walking close to a building. Additional uncertainty is introduced by the conversion from WGS to BNG, which is only accurate to ~5m.
-- The Twitter Streaming API only delivers filtered (in our case, by location) messages up to the "streaming cap", and there is no way of determining whether the sample that we receive is "representative". This is a limitation inherent to the API.
+- The Twitter Streaming API only delivers filtered (in our case, by location) messages up to the "streaming cap", and there is no way of determining whether the sample that we receive is "representative". This is a limitation inherent to the API.  
+- Current estimates suggest that only [~1% of Tweets](http://www.quora.com/What-percentage-of-tweets-are-geotagged-What-percentage-of-geotagged-tweets-are-ascribed-to-a-venue#) are Geotagged. Visualising these data thus cannot represent 'actual' Twitter usage in a given place.
 
 [![CASA](casa_black.png)](http://www.bartlett.ucl.ac.uk/casa)
