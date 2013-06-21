@@ -30,11 +30,12 @@ In order to run the demo:
 If you wish to use your own basemap, the steps are as follows:  
 
 1.  Import the shapefile (or any format supported by CityEngine, such as `dxf` &c.), `cityengine_twitter.py` and `samplerulefile.cga` into CityEngine (The script is created for the area of London, so make sure the coordinate system is “British National Grid”). If you are visualising a city outside the UK, this is not necessary, but you will also have to modify the Python script to skip the conversion step to BNG in the [on_status](cityengine_twitter.py#L178) method
-2.  Assign the rule file `samplerulefile.cga` to the CityEngine layer in which you wish to collect the tweets. In the rule options of the inspector use `Lot` as Start Rule. You must be able to see three attributes under `samplerulefile`:
+2. In the CityEngine scene, select the shapes to which you wish to apply the visualisation, and change the name to `buildings_tq_small` (this corresponds to the variable value [here](cityengine_twitter.py#L22))
+3.  Assign the rule file `samplerulefile.cga` to the CityEngine layer in which you wish to collect the tweets. In the rule options of the inspector use `Lot` as Start Rule. You must be able to see three attributes under `samplerulefile`:
     1. `HGT` (controls the height of shapes (object defined))
     2. `Opacityshape` (controls the opacity of the shapes without tweets (user controlled)),
     3. `Opacitytwit` (controls the opacity of the shapes with tweets (user controlled)).
-3. Under the field **Object Attributes** in the inspector, right click and add Object Attribute.
+4. Under the field **Object Attributes** in the inspector, right click and add Object Attribute.
 You will have to repeat this process 5 times as explained below to add 5 different attributes which will allow you to control the catchment areas for the tweets and the height visualization (the names must be identical): 
     1. Add Object Attribute
         - Attribute name: `HGT` 
@@ -56,9 +57,9 @@ You will have to repeat this process 5 times as explained below to add 5 differe
         - Attribute name: `maxdistance`
         - Type: float
         - Value: user defined – (defines the maximum catchment area for the tweet (e.g. The maximum radius that one of our shapes may cover)
-4. Back on the Rule Attributes, go to `HGT`, select source for attribute `HGT`, and set it to the Object attribute with the name `HGT`. 
-5.  Run Python script
-6.  Reset values
+5. Back on the Rule Attributes, go to `HGT`, select source for attribute `HGT`, and set it to the Object attribute with the name `HGT`. 
+6.  Run Python script
+7.  If you wish to restart the visualisation – resetting all building heights to zero, you must select all the shapes and in the CityEngine inspector's object attributes, set the `HGT` and `count_t` variables to `0`
 
 ### Method ###
 Using Tweepy, we have defined a bounding box around Greater London. When a tweet is sent to our script by the Twitter streaming API, we determine whether it contains GPS data, and discard it if not.
