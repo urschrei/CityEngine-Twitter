@@ -92,7 +92,7 @@ def height():
 scaled_height = height()
 for h in xrange(5):
     print(scaled_height.next())
-    #     100.00, 199.44, 298.33, 396.67, 494.47
+    # 100.00, 199.44, 298.33, 396.67, 494.47
 ```
 
 ## Problems and Caveats
