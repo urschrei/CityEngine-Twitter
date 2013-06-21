@@ -19,16 +19,17 @@ This directory should be added to your Python path using `sys.path.append("C:/pa
 
 ### The CityEngine Ruleset ###
 
-The user can use any spatial basemap of their preference. In this script, the coordinates are covering the area of wider London, however, they can be altered by the user in the script.
+You may use any spatial basemap you like. In this script, the co-ordinates cover the area of wider London, however, they can be altered by the user in the script.
 
-In order to run the demo: 
-1.  Import shapefile (`tileslondon.shp`- sample given), `cityengine_twitter.py` and `samplerulefile.cga` in CityEngine
-2.  Assign rule file in London_tiles, in case it is not assigned already. 
-3.  Run Python script.
+In order to run the demo:
+
+1. Import shapefile `tileslondon.shp`, `cityengine_twitter.py` and `samplerulefile.cga` in CityEngine
+2. Assign the rule file `samplerulefile.cga` in `tileslondon`, in case it is not assigned already. 
+3. Run Python script.
 
 If you wish to use your own basemap, the steps are as follows:  
 
-1.  Import the shapefile (or any format supported by CityEngine, such as `dxf` etc.), `cityengine_twitter.py` and `samplerulefile.cga` into CityEngine (The script is created for the area of London, so make sure the coordinate system is “British National Grid”). If you are visualising a city outside the UK, this is not necessary, but you will also have to modify the Python script to skip the conversion step to BNG in the [on_status](cityengine_twitter.py#L178) method.
+1.  Import the shapefile (or any format supported by CityEngine, such as `dxf` &c.), `cityengine_twitter.py` and `samplerulefile.cga` into CityEngine (The script is created for the area of London, so make sure the coordinate system is “British National Grid”). If you are visualising a city outside the UK, this is not necessary, but you will also have to modify the Python script to skip the conversion step to BNG in the [on_status](cityengine_twitter.py#L178) method.
 2.  Assign the rule file `samplerulefile.cga` to the CityEngine layer in which you wish to collect the tweets. In the rule options of the inspector use `Lot` as Start Rule. You must be able to see three attributes under `samplerulefile`:
     1. `HGT` (controls the height of shapes (object defined))
     2. `Opacityshape` (controls the opacity of the shapes without tweets (user controlled)),
