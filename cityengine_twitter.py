@@ -18,7 +18,7 @@ from scripting import *
 # get a CityEngine instance
 ce = CE()
 
-""" fill name of shapes to analyse """
+# fill name of shapes to analyse
 name = 'buildings_tq_small'
 countalltweets = 0
 lotposXa = []
@@ -185,7 +185,7 @@ class StreamWatcherListener(tweepy.StreamListener):
                         (N - lotposYa[i]) *
                         (N - lotposYa[i]))
                     if distance < maxdistance:
-                        # Even odd rule to check whether a point falls within a polygon
+                        # Even-odd checks whether a point falls within a polygon
                         c = False
                         shapeslist = ce.getVertices(Shapes[i])
                         filtered_shapes = [coord for coord in shapeslist if coord]
@@ -234,7 +234,7 @@ def main():
 
     def authorise(*args):
         """
-        Tweepy OAuth dance
+        Tweepy OAuth flow
         Accepts: consumer key, secret; access key, secret
 
         """
@@ -255,7 +255,7 @@ def main():
         secure=True)
     # This is the London bounding box
     stream.filter(locations=[-0.5630, 51.2613, 0.2804, 51.6860])
-    print 'Now monitoring filtered stream - %s' % datetime.datetime.now()
+    print 'Begin streaming at: %s' % datetime.datetime.now()
 
 
 if __name__ == "__main__":
@@ -272,5 +272,5 @@ if __name__ == "__main__":
     finally:
         # Exit cleanly once we've done everything else
         print 'Total no. of Tweets:', countalltweets
-        print 'End streaming at - %s' % datetime.datetime.now()
+        print 'End streaming at: %s' % datetime.datetime.now()
         sys.exit()
