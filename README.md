@@ -28,12 +28,12 @@ In order to run the demo:
 
 If you wish to use your own basemap, the steps are as follows:  
 
-1.  Import shapefile (or any format supported by CityEngine such as .dxf etc.), `cityengine_twitter.py` and `samplerulefile.cga` into CityEngine (The script is created for the area of London, so make sure the coordinate system is “British National Grid”). If you are visualising a city outside the UK, this is not necessary, but you will also have to modify the Python script to skip the conversion step to BNG in the [on_status](cityengine_twitter.py#L178) method.
-2.  Assign rule file to the CityEngine layer in which you wish to collect the tweets. In the rule options of the inspector use “Lot” as Start Rule. You must be able to see three attributes under samplerulefile:
-    1. HGT (controls the height of shapes (object defined))
-    2. Opacityshape (controls the opacity of the shapes without tweets (user controlled)),
-    3. Opacitytwit (controls the opacity of the shapes with tweets (user controlled)).
-3. Under the field Object Attributes in the inspector, right click and add Object Attribute.
+1.  Import the shapefile (or any format supported by CityEngine, such as `dxf` etc.), `cityengine_twitter.py` and `samplerulefile.cga` into CityEngine (The script is created for the area of London, so make sure the coordinate system is “British National Grid”). If you are visualising a city outside the UK, this is not necessary, but you will also have to modify the Python script to skip the conversion step to BNG in the [on_status](cityengine_twitter.py#L178) method.
+2.  Assign the rule file `samplerulefile.cga` to the CityEngine layer in which you wish to collect the tweets. In the rule options of the inspector use `Lot` as Start Rule. You must be able to see three attributes under `samplerulefile`:
+    1. `HGT` (controls the height of shapes (object defined))
+    2. `Opacityshape` (controls the opacity of the shapes without tweets (user controlled)),
+    3. `Opacitytwit` (controls the opacity of the shapes with tweets (user controlled)).
+3. Under the field **Object Attributes** in the inspector, right click and add Object Attribute.
 You will have to repeat this process 5 times as explained below to add 5 different attributes which will allow you to control the catchment areas for the tweets and the height visualization (the names must be identical): 
     1. Add Object Attribute
         - Attribute name: `HGT` 
