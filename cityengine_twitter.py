@@ -7,9 +7,13 @@ Created on 2013-06-04
 http://www.bartlett.ucl.ac.uk/casa
 
 """
+
+
 import sys
 import datetime
 import traceback
+import time
+from threading import Thread
 import math
 sys.path.append("C:/Users/flora/pythonpackages")
 import tweepy
@@ -18,7 +22,25 @@ from scripting import *
 # get a CityEngine instance
 ce = CE()
 
-# fill name of shapes to analyse
+
+class MyThread(Thread):
+    def __init__(self):
+        self.stopped = False
+        Thread.__init__(self)
+        self.counter = 0
+
+    def run(self):
+        while not self.stopped:
+        # Write a screenshot every 30 seconds
+            time.sleep(30.00)
+            self.counter += 1
+            filename = "/new_snapshot_%s.png" % self.counter
+            views = ce.getObjectsFrom(ce.get3DViews(), ce.isViewport)
+            # ce.waitForUIIdle()
+            views[0].snapshot(ce.toFSPath('images') + filename, 1920, 1080)
+
+
+""" fill name of shapes to analyse """
 name = 'buildings_tq_small'
 countalltweets = 0
 lotposXa = []
@@ -139,7 +161,7 @@ def bng(input_lat, input_lon):
 
 Shapes = ce.getObjectsFrom(ce.scene, ce.withName(name))
 # Zone cluster size
-maxdistance = ce.getAttribute(Shapes[0], 'maxdistance')
+mxdstnc = ce.getAttribute(Shapes[0], 'mxdstnc')
 # Maximum allowed height
 maxHGT = ce.getAttribute(Shapes[0], 'maxHGT')
 # Tweet step
@@ -184,8 +206,8 @@ class StreamWatcherListener(tweepy.StreamListener):
                         (E - lotposXa[i]) +
                         (N - lotposYa[i]) *
                         (N - lotposYa[i]))
-                    if distance < maxdistance:
-                        # Even-odd checks whether a point falls within a polygon
+                    if distance < mxdstnc:
+                        # Even-odd rule to check whether a point falls within a polygon
                         c = False
                         shapeslist = ce.getVertices(Shapes[i])
                         filtered_shapes = [coord for coord in shapeslist if coord]
@@ -203,12 +225,12 @@ class StreamWatcherListener(tweepy.StreamListener):
                             count_t1 = ce.getAttribute(Shapes[i], 'count_t')
                             ce.setAttribute(Shapes[i], 'count_t', count_t1 + 1)
                             hgt1 = ce.getAttribute(Shapes[i], 'HGT')
+                            ce.generateModels(Shapes[i])
                             if hgt1 < maxHGT:
                                     ce.setAttribute(
                                         Shapes[i],
                                         'HGT',
                                         (hgt1 + ((maxHGT - hgt1) / maxHGT) * twitHGT))
-                                    ce.generateModels(Shapes[i])
                             else:
                                 hgt1 = maxHGT
 
@@ -230,11 +252,10 @@ def on_timeout(self):
 
 def main():
     """ Main function """
-    print 'Now monitoring filtered stream - %s' % datetime.datetime.now()
 
     def authorise(*args):
         """
-        Tweepy OAuth flow
+        Tweepy OAuth dance
         Accepts: consumer key, secret; access key, secret
 
         """
@@ -246,6 +267,9 @@ def main():
             args[3])
         return auth
 
+    capture = MyThread()
+    capture.start()
+    print 'Begin streaming at - %s' % datetime.datetime.now()
     twitter = authorise(con_key, con_secret, acc_key, acc_secret)
     swl = StreamWatcherListener()
     stream = tweepy.streaming.Stream(
@@ -255,22 +279,24 @@ def main():
         secure=True)
     # This is the London bounding box
     stream.filter(locations=[-0.5630, 51.2613, 0.2804, 51.6860])
-    print 'Begin streaming at: %s' % datetime.datetime.now()
 
 
 if __name__ == "__main__":
     try:
         main()
     except (KeyboardInterrupt, SystemExit):
+        capture.stopped = True
         # Actually raise these so it exits cleanly
         raise
     except Exception, error:
+        capture.stopped = True
         # All other exceptions, so display the error
         print "Stack trace:\n", traceback.print_exc(file=sys.stdout)
     else:
         pass
     finally:
         # Exit cleanly once we've done everything else
+        capture.stopped = True
         print 'Total no. of Tweets:', countalltweets
-        print 'End streaming at: %s' % datetime.datetime.now()
+        print 'End streaming at - %s' % datetime.datetime.now()
         sys.exit()
