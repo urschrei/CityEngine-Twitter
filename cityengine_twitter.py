@@ -188,10 +188,23 @@ class StreamWatcherListener(tweepy.StreamListener):
 
     def __init__(self):
         super(StreamWatcherListener, self).__init__()
+        self.keywords = set(list(
+            "weather",
+            "traffic",
+            "tdf",
+            "wimbledon",
+            "summer",
+            "london"
+        ))
 
     def on_status(self, status):
 
         if status.coordinates:
+            # naive split into unique words
+            intersect = list(set(word.lower() for word in status.text.split()) & self.keywords)
+            if intersect:
+                # process the keywords
+                print "Keyword hits:", ", ".join(intersect)
             point = status.coordinates['coordinates']
             # Reverse lon, lat points
             point[0], point[1] = point[1], point[0]
