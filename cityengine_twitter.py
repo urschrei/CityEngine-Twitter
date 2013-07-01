@@ -23,7 +23,7 @@ from scripting import *
 ce = CE()
 
 
-class Snapshot(Thread):
+class Screenshot(Thread):
     def __init__(self):
         self.stopped = False
         Thread.__init__(self)
@@ -267,8 +267,8 @@ def main():
             args[3])
         return auth
 
-    capture = Snapshot()
-    capture.start()
+    capture = Screenshot()
+    # capture.start()
     print 'Begin streaming at - %s' % datetime.datetime.now()
     twitter = authorise(con_key, con_secret, acc_key, acc_secret)
     swl = StreamWatcherListener()
