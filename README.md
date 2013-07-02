@@ -8,8 +8,6 @@ Twitter provides a 'firehose' of real-time tweets, including their location if t
 
 Using CityEngine's Python scripting functionality, we've created a model of London in which buildings grow upwards, according to the frequency of tweets which are sent from (or in close proximity to) them.
 
-[link to YouTube video]
-
 ## Details
 ### Installation ###
 This script requires the [Tweepy](http://tweepy.github.io) library. You should first install the [pip](http://www.pip-installer.org/en/latest/) tool for your Python installation. Because CityEngine uses its own Jython installation, it's easiest to install Tweepy into a specific target directory external to that installation:  
