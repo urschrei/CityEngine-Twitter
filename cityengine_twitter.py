@@ -17,6 +17,7 @@ from threading import Thread
 import math
 sys.path.append("C:/Users/flora/pythonpackages")
 import tweepy
+from credentials import con_key, con_secret, acc_key, acc_secret
 from scripting import *
 
 # get a CityEngine instance
@@ -174,13 +175,6 @@ for i in range(len(Shapes)):
     lotposY = lotpos[2]
     lotposXa.append(lotposX)
     lotposYa.append(lotposY)
-
-
-# Twitter API keys
-con_key = "7b1D8yCYcmCG56nNbPEw"
-con_secret = "UwNDO8PW6J0S8vyLi9LlecVy9WOXrYEdJWmzVES3k"
-acc_key = "372313985-odzBYBZsjQm2ZUZl5PDKeqySQKNNTZyP66UfrUBt"
-acc_secret = "ssJrpET7ecQsPm8mIkWobDqSRbVftvIk1969X0BPU"
 
 
 class StreamWatcherListener(tweepy.StreamListener):
