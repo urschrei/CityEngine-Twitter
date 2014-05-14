@@ -99,4 +99,11 @@ for h in xrange(5):
 - The Twitter Streaming API only delivers filtered (in our case, by location) messages up to the "streaming cap", and there is no way of determining whether the sample that we receive is "representative"
 - Current estimates suggest that only [~1% of Tweets](http://www.quora.com/What-percentage-of-tweets-are-geotagged-What-percentage-of-geotagged-tweets-are-ascribed-to-a-venue#) are Geotagged. Visualising these data thus cannot represent 'actual' Twitter usage in a given place
 
+## Citation
+
+This work may be cited using the following DOI:  
+
+[![DOI](https://zenodo.org/badge/3657/urschrei/CityEngine-Twitter.png)](https://zenodo.org/record/9795)
+
+---
 [![CASA](casa_black.png)](http://www.bartlett.ucl.ac.uk/casa)
