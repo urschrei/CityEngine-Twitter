@@ -1,3 +1,6 @@
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.9795.svg)](https://doi.org/10.5281/zenodo.9795)
+
 # Mapping London Buildings in Real Time using Twitter Data
 
 ![London](london.png "London")
@@ -101,9 +104,9 @@ for h in xrange(5):
 
 ## Citation
 
-This work may be cited using the following DOI:  
+If you make use of this work, please cite it using the following DOI:  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.9795.svg)](https://doi.org/10.5281/zenodo.9795)
 
-[![DOI](https://zenodo.org/badge/3657/urschrei/CityEngine-Twitter.png)](https://zenodo.org/record/9795)
 
 ---
 [![CASA](casa_black.png)](http://www.bartlett.ucl.ac.uk/casa)
